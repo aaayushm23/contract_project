@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contract List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f8f8f8;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        background-color: #1a73e8;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background-color: #1558b1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Contracts</h1>
+    <a href="{% url 'add_contract' %}" class="btn">Add Contract</a>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Description</th>
+        <th>Company Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      {% for contract in contracts %}
+      <tr>
+        <td>{{ contract.name }}</td>
+        <td>{{ contract.start_date|date:"M d, Y" }}</td>
+        <td>{{ contract.end_date|date:"M d, Y" }}</td>
+        <td>{{ contract.description }}</td>
+        <td>{{ contract.company_name }}</td>
+        <td>{{ contract.status.name }}</td>
+        <td>
+          <a href="{% url 'edit_contract' contract.pk %}" class="btn">Edit</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

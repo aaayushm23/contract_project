@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% if form.instance.pk %}Edit Contract{% else %}Add Contract{% endif %}
+    </title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      a {
+        color: #1a73e8;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        color: #fff;
+        background-color: #1a73e8;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-top: 10px;
+      }
+      .btn:hover {
+        background-color: #1558b1;
+      }
+      .btn-back {
+        background-color: #6c757d;
+      }
+      .btn-back:hover {
+        background-color: #5a6268;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>
+        {% if form.instance.pk %}Edit Contract{% else %}Add Contract{% endif %}
+      </h1>
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_name">Name</label>
+          {{ form.name }}
+        </div>
+        <div class="form-group">
+          <label for="id_start_date">Start Date</label>
+          {{ form.start_date }}
+        </div>
+        <div class="form-group">
+          <label for="id_end_date">End Date</label>
+          {{ form.end_date }}
+        </div>
+        <div class="form-group">
+          <label for="id_description">Description</label>
+          {{ form.description }}
+        </div>
+        <div class="form-group">
+          <label for="id_company_name">Company Name</label>
+          {{ form.company_name }}
+        </div>
+        <div class="form-group">
+          <label for="id_status">Status</label>
+          {{ form.status }}
+        </div>
+        <button type="submit" class="btn">Save</button>
+        <a href="{% url 'contract_list' %}" class="btn btn-back"
+          >Back to list</a
+        >
+      </form>
+    </div>
+  </body>
+</html>
