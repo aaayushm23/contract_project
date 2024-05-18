@@ -14,10 +14,11 @@ RUN apt-get update && apt-get install -y \
 # Create and set the working directory
 WORKDIR /app
 
-# Install Python dependencies
+# Copy and install Python dependencies
 COPY requirements.txt /app/
-RUN python -m venv /opt/venv && /opt/venv/bin/pip install --upgrade pip \
-    && /opt/venv/bin/pip install -r requirements.txt
+RUN python -m venv /opt/venv && \
+    /opt/venv/bin/pip install --upgrade pip && \
+    /opt/venv/bin/pip install -r requirements.txt
 
 # Copy the rest of the application code
 COPY . /app/
@@ -26,7 +27,7 @@ COPY . /app/
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+RUN /opt/venv/bin/python manage.py collectstatic --noinput
 
 # Run the application
-CMD ["gunicorn", "contract_project.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["/opt/venv/bin/gunicorn", "contract_project.wsgi:application", "--bind", "0.0.0.0:8000"]
