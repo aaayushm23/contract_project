@@ -5,12 +5,11 @@ from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('SECRET_KEY', default='your-secret-key')
+SECRET_KEY = config('SECRET_KEY', default='ewa09ph)wu-@d_ms5m+be4oi-*op6d1+d43kjq62z*v+7ijn23')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['contractproject-production.up.railway.app', '127.0.0.1', 'localhost']
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -54,9 +53,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'contract_project.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    'default': dj_database_url.config(
+        default='postgresql://postgres:dakGoUBEJysZLvwVNYidIslBZrJRGqWg@roundhouse.proxy.rlwy.net:39367/railway'
+    )
 }
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -85,5 +85,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
