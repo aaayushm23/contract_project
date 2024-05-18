@@ -9,7 +9,8 @@ SECRET_KEY = config('SECRET_KEY', default='your-secret-key')
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['your-railway-app-domain', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['contractproject-production.up.railway.app', '127.0.0.1', 'localhost']
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
